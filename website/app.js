@@ -1,7 +1,7 @@
 /* Global Variables */
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 // Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=0e3696c35b448f59fb2d1854d1ae7959&units=imperial';
+const apiKey = '&appid=api_placeholder&units=imperial';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -14,6 +14,15 @@ document.getElementById('generate').addEventListener('click', getWeather);
 function getWeather(event) {
     let zip = document.getElementById('zip').value;
     let feelings = document.getElementById('feelings').value;
+
+    const validateZipCode = (zip) => {
+        const zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+         return zipCodePattern.test(zip);
+    }
+
+    if(zip === '' || !validateZipCode(zip)) {
+        alert("Please enter your zip code");
+    }
 
     getWeatherData(baseURL, zip, apiKey)
         // Chain promise that makes a POST request to add API data and user entered content
