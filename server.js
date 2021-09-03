@@ -37,14 +37,14 @@ app.get('/all', (req, res) => {
 
 // POST route that adds incoming data to projectData
 
-app.post('/addWeatherData', addWeatherData);
+app.post('/addWeather', addWeatherData);
 
-const addWeatherData = (req, res) => {
-    projectData.temp = req.body.temp;
-    projectData.date = req.body.date;
-    projectData.content = req.body.content;
-    
-    console.log(projectData);
-   
+function addWeatherData(req, res) {
+    let data = req.body;
+
+    projectData.temp = data.temp;
+    projectData.date = data.date;
+    projectData.feelings = data.feelings;
+
     res.send(projectData);
-};
+}
