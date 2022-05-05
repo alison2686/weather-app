@@ -4,8 +4,13 @@ projectData = {};
 // Require Express to run server and routes
 const express = require('express');
 
+//Import and configure dotenv
+require('dotenv').config()
+
 // Start up an instance of app
 const app = express();
+
+
 
 /* Middleware*/
 //Configure express to use body-parser as middle-ware.
@@ -47,7 +52,6 @@ function addWeatherData(req, res) {
 
     projectData.temp = data.temp;
     projectData.date = data.date;
-    projectData.feelings = data.feelings;
 
     res.send(projectData);
 }
