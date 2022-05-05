@@ -1,7 +1,7 @@
 /* Global Variables */
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 // Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=api_placeholder&units=imperial';
+const apiKey = '&appid=700623bd062bcc45958b61a0516a7de9&units=imperial';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -13,7 +13,7 @@ document.getElementById('generate').addEventListener('click', getWeather);
 // Function called by event listener
 function getWeather(event) {
     let zip = document.getElementById('zip').value;
-    let feelings = document.getElementById('feelings').value;
+    // let feelings = document.getElementById('feelings').value;
 
     const validateZipCode = (zip) => {
         const zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
@@ -30,7 +30,7 @@ function getWeather(event) {
             postData('/addWeather', {
                 temp: data.main.temp, 
                 date: newDate, 
-                feelings: feelings,
+                // feelings: feelings,
             })
             // Chain promise that updates UI dynamically
             .then(()=> 
@@ -77,7 +77,7 @@ const updateUI = async() => {
         const allData = await request.json();
         document.getElementById('date').innerHTML = allData.date;
         document.getElementById('temp').innerHTML = allData.temp + '° F';
-        document.querySelector('#content').innerHTML = allData.feelings;
+        // document.querySelector('#content').innerHTML = allData.feelings;
     } catch(error) {
         console.log('error', error);
     }
